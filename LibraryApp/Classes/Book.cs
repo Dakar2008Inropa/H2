@@ -9,12 +9,12 @@
 
         public Book()
         {
-            ISBN = Guid.NewGuid().ToString("N");
             IsAvailable = true;
         }
 
-        public Book(string title, string author)
+        public Book(string title, string author, string isbn)
         {
+            ISBN = isbn;
             Title = title;
             Author = author;
             ISBN = Guid.NewGuid().ToString("N");

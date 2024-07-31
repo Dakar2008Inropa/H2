@@ -16,7 +16,7 @@ namespace LibraryAppUnitTest
         [TestMethod]
         public void AddBookTest()
         {
-            Book book = new Book("Title 1", "Author 1");
+            Book book = new Book("Title 1", "Author 1", _library.GenerateUniqueISBN());
             _library.AddBook(book);
             List<Book> books = _library.DisplayAllBooks();
             Assert.AreEqual(1, books.Count);
@@ -26,7 +26,7 @@ namespace LibraryAppUnitTest
         [TestMethod]
         public void RemoveBookTest()
         {
-            Book book = new Book("Title 1", "Author 1");
+            Book book = new Book("Title 1", "Author 1", _library.GenerateUniqueISBN());
             _library.AddBook(book);
             _library.RemoveBook(book);
             List<Book> books = _library.DisplayAllBooks();
@@ -56,8 +56,8 @@ namespace LibraryAppUnitTest
         [TestMethod]
         public void DisplayAllBooksTest()
         {
-            Book book1 = new Book("Title 1", "Author 1");
-            Book book2 = new Book("Title 2", "Author 2");
+            Book book1 = new Book("Title 1", "Author 1", _library.GenerateUniqueISBN());
+            Book book2 = new Book("Title 2", "Author 2", _library.GenerateUniqueISBN());
             _library.AddBook(book1);
             _library.AddBook(book2);
             List<Book> books = _library.DisplayAllBooks();
@@ -80,10 +80,23 @@ namespace LibraryAppUnitTest
         }
 
         [TestMethod]
+        public void DisplayAllPremiumUsersTest()
+        {
+            PremiumUser premiumUser1 = new PremiumUser("PremiumUser 1");
+            PremiumUser premiumUser2 = new PremiumUser("PremiumUser 2");
+            _library.RegisterPremiumUser(premiumUser1);
+            _library.RegisterPremiumUser(premiumUser2);
+            List<PremiumUser> premiumUsers = _library.DisplayAllPremiumUsers();
+            Assert.AreEqual(2, premiumUsers.Count);
+            Assert.AreEqual(premiumUser1, premiumUsers[0]);
+            Assert.AreEqual(premiumUser2, premiumUsers[1]);
+        }
+
+        [TestMethod]
         public void DisplayAvailableBooksTest()
         {
-            Book availableBook = new Book("Title 1", "Author 1");
-            Book borrowedBook = new Book("Title 2", "Author 2");
+            Book availableBook = new Book("Title 1", "Author 1", _library.GenerateUniqueISBN());
+            Book borrowedBook = new Book("Title 2", "Author 2", _library.GenerateUniqueISBN());
 
             borrowedBook.ChangeAvailability(false);
 
@@ -98,8 +111,8 @@ namespace LibraryAppUnitTest
         [TestMethod]
         public void DisplayBorrowedBooksTest()
         {
-            Book availableBook = new Book("Title 1", "Author 1");
-            Book borrowedBook = new Book("Title 2", "Author 2");
+            Book availableBook = new Book("Title 1", "Author 1", _library.GenerateUniqueISBN());
+            Book borrowedBook = new Book("Title 2", "Author 2", _library.GenerateUniqueISBN());
 
             borrowedBook.ChangeAvailability(false);
 
@@ -114,7 +127,7 @@ namespace LibraryAppUnitTest
         [TestMethod]
         public void FindBookByISBNTest()
         {
-            Book book = new Book("Title 1", "Author 1");
+            Book book = new Book("Title 1", "Author 1", _library.GenerateUniqueISBN());
             _library.AddBook(book);
             Tuple<Book, string> result = _library.FindBookByISBN(book.ISBN);
             Assert.AreEqual(book, result.Item1);
@@ -132,7 +145,7 @@ namespace LibraryAppUnitTest
         [TestMethod]
         public void BorrowBookTest()
         {
-            Book book = new Book("Title 1", "Author 1");
+            Book book = new Book("Title 1", "Author 1", _library.GenerateUniqueISBN());
             User user = new User("User 1");
             _library.AddBook(book);
             _library.RegisterUser(user);
@@ -144,10 +157,10 @@ namespace LibraryAppUnitTest
         [TestMethod]
         public void BorrowBookTest_LoanLimitReached()
         {
-            Book book1 = new Book("Title 1", "Author 1");
-            Book book2 = new Book("Title 2", "Author 2");
-            Book book3 = new Book("Title 2", "Author 2");
-            Book book4 = new Book("Title 2", "Author 2");
+            Book book1 = new Book("Title 1", "Author 1", _library.GenerateUniqueISBN());
+            Book book2 = new Book("Title 2", "Author 2", _library.GenerateUniqueISBN());
+            Book book3 = new Book("Title 2", "Author 2", _library.GenerateUniqueISBN());
+            Book book4 = new Book("Title 2", "Author 2", _library.GenerateUniqueISBN());
             User user = new User("User 1");
             _library.AddBook(book1);
             _library.AddBook(book2);
@@ -158,14 +171,14 @@ namespace LibraryAppUnitTest
             user.BorrowBook(book2);
             user.BorrowBook(book3);
             user.BorrowBook(book4);
-            bool result = user.BorrowBook(new Book("Title 3", "Author 3"));
+            bool result = user.BorrowBook(new Book("Title 3", "Author 3", _library.GenerateUniqueISBN()));
             Assert.IsFalse(result);
         }
 
         [TestMethod]
         public void ReturnBookTest()
         {
-            Book book = new Book("Title 1", "Author 1");
+            Book book = new Book("Title 1", "Author 1", _library.GenerateUniqueISBN());
             User user = new User("User 1");
             _library.AddBook(book);
             _library.RegisterUser(user);
@@ -180,11 +193,11 @@ namespace LibraryAppUnitTest
             var premiumUser = new PremiumUser("PremiumUser1");
             var books = new List<Book>
             {
-                new Book("Title1", "Author1"),
-                new Book("Title2", "Author2"),
-                new Book("Title3", "Author3"),
-                new Book("Title4", "Author4"),
-                new Book("Title5", "Author5"),
+                new Book("Title1", "Author1", _library.GenerateUniqueISBN()),
+                new Book("Title2", "Author2", _library.GenerateUniqueISBN()),
+                new Book("Title3", "Author3", _library.GenerateUniqueISBN()),
+                new Book("Title4", "Author4", _library.GenerateUniqueISBN()),
+                new Book("Title5", "Author5", _library.GenerateUniqueISBN()),
             };
 
             foreach (var book in books)
@@ -202,6 +215,14 @@ namespace LibraryAppUnitTest
             premiumUser.BorrowBook(books[4]);
 
             Assert.AreEqual(5, premiumUser.BorrowedBooks.Count);
+        }
+
+        [TestMethod]
+        public void GenerateUniqueISBNTest()
+        {
+            string isbn1 = _library.GenerateUniqueISBN();
+            string isbn2 = _library.GenerateUniqueISBN();
+            Assert.AreNotEqual(isbn1, isbn2);
         }
     }
 }
