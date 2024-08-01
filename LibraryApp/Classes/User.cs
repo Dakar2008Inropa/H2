@@ -9,7 +9,7 @@
 
         public User()
         {
-            UserId = Guid.NewGuid().ToString("N");
+            UserId = Guid.NewGuid().ToString("N").Substring(0, 10).ToUpper();
             LoanLimit = 4;
             BorrowedBooks = new List<Book>();
         }
@@ -17,7 +17,7 @@
         public User(string name)
         {
             Name = name;
-            UserId = Guid.NewGuid().ToString("N");
+            UserId = Guid.NewGuid().ToString("N").Substring(0, 10).ToUpper();
             LoanLimit = 4;
             BorrowedBooks = new List<Book>();
         }

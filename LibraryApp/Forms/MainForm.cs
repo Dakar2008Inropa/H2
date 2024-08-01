@@ -47,7 +47,7 @@ namespace LibraryApp
         {
             if (e.KeyCode == Keys.Enter)
             {
-                if (SearchForBookTextbox.TextLength == 0)
+                if (!SearchForBookTextbox.Text.Any(char.IsDigit))
                     bookBindingSource.DataSource = _library.DisplayAllBooks();
                 else
                     bookBindingSource.DataSource = _library.DisplayAllBooks(SearchForBookTextbox.Text);
@@ -69,6 +69,66 @@ namespace LibraryApp
             {
                 Book book = (Book)row.DataBoundItem;
                 _library.RemoveBook(book);
+            }
+            ReloadGridviews();
+        }
+
+        private void AddUserBtn_Click(object sender, EventArgs e)
+        {
+            AddUserForm addUserForm = new AddUserForm();
+            if (addUserForm.ShowDialog() == DialogResult.OK)
+            {
+                _library.RegisterUser(addUserForm.user);
+                ReloadGridviews();
+
+                UserDataGridView.ClearSelection();
+            }
+        }
+
+        private void AddPremiumUserBtn_Click(object sender, EventArgs e)
+        {
+            AddUserForm addUserForm = new AddUserForm(true);
+            if (addUserForm.ShowDialog() == DialogResult.OK)
+            {
+                _library.RegisterPremiumUser(addUserForm.premiumUser);
+                ReloadGridviews();
+
+                PremiumUserDataGridView.ClearSelection();
+            }
+        }
+
+        private void UserDataGridView_SelectionChanged(object sender, EventArgs e)
+        {
+            if (UserDataGridView.SelectedRows.Count > 0)
+                DeleteUserBtn.Visible = true;
+            else
+                DeleteUserBtn.Visible = false;
+        }
+
+        private void PremiumUserDataGridView_SelectionChanged(object sender, EventArgs e)
+        {
+            if (PremiumUserDataGridView.SelectedRows.Count > 0)
+                DeletePremiumUserBtn.Visible = true;
+            else
+                DeletePremiumUserBtn.Visible = false;
+        }
+
+        private void DeletePremiumUserBtn_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in PremiumUserDataGridView.SelectedRows)
+            {
+                PremiumUser premiumUser = (PremiumUser)row.DataBoundItem;
+                _library.UnregisterPremiumUser(premiumUser);
+            }
+            ReloadGridviews();
+        }
+
+        private void DeleteUserBtn_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in UserDataGridView.SelectedRows)
+            {
+                User user = (User)row.DataBoundItem;
+                _library.UnregisterUser(user);
             }
             ReloadGridviews();
         }

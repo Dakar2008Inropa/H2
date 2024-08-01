@@ -54,6 +54,26 @@ namespace LibraryAppUnitTest
         }
 
         [TestMethod]
+        public void RegisterPremiumUserTest()
+        {
+            PremiumUser premiumUser = new PremiumUser("PremiumUser 1");
+            _library.RegisterPremiumUser(premiumUser);
+            List<PremiumUser> premiumUsers = _library.DisplayAllPremiumUsers();
+            Assert.AreEqual(1, premiumUsers.Count);
+            Assert.AreEqual(premiumUser, premiumUsers[0]);
+        }
+
+        [TestMethod]
+        public void UnregisterPremiumUserTest()
+        {
+            PremiumUser premiumUser = new PremiumUser("PremiumUser 1");
+            _library.RegisterPremiumUser(premiumUser);
+            _library.UnregisterPremiumUser(premiumUser);
+            List<PremiumUser> premiumUsers = _library.DisplayAllPremiumUsers();
+            Assert.AreEqual(0, premiumUsers.Count);
+        }
+
+        [TestMethod]
         public void DisplayAllBooksTest()
         {
             Book book1 = new Book("Title 1", "Author 1", _library.GenerateUniqueISBN());
@@ -64,6 +84,18 @@ namespace LibraryAppUnitTest
             Assert.AreEqual(2, books.Count);
             Assert.AreEqual(book1, books[0]);
             Assert.AreEqual(book2, books[1]);
+        }
+
+        [TestMethod]
+        public void SearchForISBNTest()
+        {
+            Book book1 = new Book("Title 1", "Author 1", _library.GenerateUniqueISBN());
+            Book book2 = new Book("Title 2", "Author 2", _library.GenerateUniqueISBN());
+            _library.AddBook(book1);
+            _library.AddBook(book2);
+            List<Book> books = _library.DisplayAllBooks(book1.ISBN);
+            Assert.AreEqual(1, books.Count);
+            Assert.AreEqual(book1, books[0]);
         }
 
         [TestMethod]
@@ -80,6 +112,18 @@ namespace LibraryAppUnitTest
         }
 
         [TestMethod]
+        public void SearchForUserTest()
+        {
+            User user1 = new User("User 1");
+            User user2 = new User("User 2");
+            _library.RegisterUser(user1);
+            _library.RegisterUser(user2);
+            List<User> users = _library.DisplayAllUsers(user1.UserId);
+            Assert.AreEqual(1, users.Count);
+            Assert.AreEqual(user1, users[0]);
+        }
+
+        [TestMethod]
         public void DisplayAllPremiumUsersTest()
         {
             PremiumUser premiumUser1 = new PremiumUser("PremiumUser 1");
@@ -90,6 +134,18 @@ namespace LibraryAppUnitTest
             Assert.AreEqual(2, premiumUsers.Count);
             Assert.AreEqual(premiumUser1, premiumUsers[0]);
             Assert.AreEqual(premiumUser2, premiumUsers[1]);
+        }
+
+        [TestMethod]
+        public void SearchForPremiumUserTest()
+        {
+            PremiumUser premiumUser1 = new PremiumUser("PremiumUser 1");
+            PremiumUser premiumUser2 = new PremiumUser("PremiumUser 2");
+            _library.RegisterPremiumUser(premiumUser1);
+            _library.RegisterPremiumUser(premiumUser2);
+            List<PremiumUser> premiumUsers = _library.DisplayAllPremiumUsers(premiumUser1.UserId);
+            Assert.AreEqual(1, premiumUsers.Count);
+            Assert.AreEqual(premiumUser1, premiumUsers[0]);
         }
 
         [TestMethod]

@@ -1,25 +1,16 @@
-﻿using System.ComponentModel;
-
-namespace LibraryApp.Classes
+﻿namespace LibraryApp.Classes
 {
     public class Library
     {
         private List<Book> Books { get; set; }
-        private BindingList<Book> Books_GridView { get; set; }
         private List<User> Users { get; set; }
-        private BindingList<User> Users_GridView { get; set; }
         private List<PremiumUser> PremiumUsers { get; set; }
-        private BindingList<PremiumUser> PremiumUsers_GridView { get; set; }
 
         public Library()
         {
             Books = new List<Book>();
             Users = new List<User>();
             PremiumUsers = new List<PremiumUser>();
-
-            Books_GridView = new BindingList<Book>(Books);
-            Users_GridView = new BindingList<User>(Users);
-            PremiumUsers_GridView = new BindingList<PremiumUser>(PremiumUsers);
         }
 
         public void AddBook(Book book)

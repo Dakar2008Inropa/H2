@@ -2,6 +2,10 @@
 {
     public class PremiumUser : User
     {
+        public PremiumUser()
+        {
+            LoanLimit = 5;
+        }
         public PremiumUser(string name)
         {
             Name = name;

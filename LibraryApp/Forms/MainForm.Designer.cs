@@ -31,7 +31,7 @@
             components = new System.ComponentModel.Container();
             LibraryTabControl = new TabControl();
             BookPage = new TabPage();
-            SearchForBookTextbox = new TextBox();
+            SearchForBookTextbox = new MaskedTextBox();
             SearchBookLabel = new Label();
             DeleteBookBtn = new Button();
             BooksDataGridView = new DataGridView();
@@ -107,8 +107,10 @@
             SearchForBookTextbox.BackColor = Color.WhiteSmoke;
             SearchForBookTextbox.BorderStyle = BorderStyle.FixedSingle;
             SearchForBookTextbox.Location = new Point(616, 11);
-            SearchForBookTextbox.Margin = new Padding(0, 0, 0, 10);
+            SearchForBookTextbox.Margin = new Padding(0);
+            SearchForBookTextbox.Mask = "000-0-000-00000-0";
             SearchForBookTextbox.Name = "SearchForBookTextbox";
+            SearchForBookTextbox.PromptChar = ' ';
             SearchForBookTextbox.Size = new Size(275, 23);
             SearchForBookTextbox.TabIndex = 4;
             SearchForBookTextbox.TextAlign = HorizontalAlignment.Center;
@@ -225,11 +227,11 @@
             UserPage.Controls.Add(DeleteUserBtn);
             UserPage.Controls.Add(UserDataGridView);
             UserPage.Controls.Add(AddUserBtn);
-            UserPage.Location = new Point(4, 24);
+            UserPage.Location = new Point(4, 25);
             UserPage.Margin = new Padding(0);
             UserPage.Name = "UserPage";
             UserPage.Padding = new Padding(5);
-            UserPage.Size = new Size(896, 388);
+            UserPage.Size = new Size(896, 387);
             UserPage.TabIndex = 1;
             UserPage.Text = "Users";
             UserPage.UseVisualStyleBackColor = true;
@@ -271,25 +273,30 @@
             DeleteUserBtn.Text = "Delete User";
             DeleteUserBtn.UseVisualStyleBackColor = false;
             DeleteUserBtn.Visible = false;
+            DeleteUserBtn.Click += DeleteUserBtn_Click;
             // 
             // UserDataGridView
             // 
             UserDataGridView.AllowUserToAddRows = false;
             UserDataGridView.AllowUserToDeleteRows = false;
+            UserDataGridView.AllowUserToResizeRows = false;
             UserDataGridView.AutoGenerateColumns = false;
             UserDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             UserDataGridView.Columns.AddRange(new DataGridViewColumn[] { userIdDataGridViewTextBoxColumn, nameDataGridViewTextBoxColumn, loanLimitDataGridViewTextBoxColumn });
             UserDataGridView.DataSource = userBindingSource;
             UserDataGridView.Dock = DockStyle.Bottom;
-            UserDataGridView.Location = new Point(5, 49);
+            UserDataGridView.Location = new Point(5, 48);
             UserDataGridView.Margin = new Padding(0);
+            UserDataGridView.MultiSelect = false;
             UserDataGridView.Name = "UserDataGridView";
             UserDataGridView.ReadOnly = true;
             UserDataGridView.RowHeadersVisible = false;
             UserDataGridView.RowTemplate.Height = 25;
+            UserDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             UserDataGridView.Size = new Size(886, 334);
             UserDataGridView.TabIndex = 6;
             UserDataGridView.TabStop = false;
+            UserDataGridView.SelectionChanged += UserDataGridView_SelectionChanged;
             // 
             // userIdDataGridViewTextBoxColumn
             // 
@@ -334,6 +341,7 @@
             AddUserBtn.TabIndex = 5;
             AddUserBtn.Text = "Add New User";
             AddUserBtn.UseVisualStyleBackColor = false;
+            AddUserBtn.Click += AddUserBtn_Click;
             // 
             // PremiumUserPage
             // 
@@ -388,11 +396,13 @@
             DeletePremiumUserBtn.Text = "Delete Premium User";
             DeletePremiumUserBtn.UseVisualStyleBackColor = false;
             DeletePremiumUserBtn.Visible = false;
+            DeletePremiumUserBtn.Click += DeletePremiumUserBtn_Click;
             // 
             // PremiumUserDataGridView
             // 
             PremiumUserDataGridView.AllowUserToAddRows = false;
             PremiumUserDataGridView.AllowUserToDeleteRows = false;
+            PremiumUserDataGridView.AllowUserToResizeRows = false;
             PremiumUserDataGridView.AutoGenerateColumns = false;
             PremiumUserDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             PremiumUserDataGridView.Columns.AddRange(new DataGridViewColumn[] { userIdDataGridViewTextBoxColumn1, nameDataGridViewTextBoxColumn1, loanLimitDataGridViewTextBoxColumn1 });
@@ -400,13 +410,16 @@
             PremiumUserDataGridView.Dock = DockStyle.Bottom;
             PremiumUserDataGridView.Location = new Point(5, 49);
             PremiumUserDataGridView.Margin = new Padding(0);
+            PremiumUserDataGridView.MultiSelect = false;
             PremiumUserDataGridView.Name = "PremiumUserDataGridView";
             PremiumUserDataGridView.ReadOnly = true;
             PremiumUserDataGridView.RowHeadersVisible = false;
             PremiumUserDataGridView.RowTemplate.Height = 25;
+            PremiumUserDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             PremiumUserDataGridView.Size = new Size(886, 334);
             PremiumUserDataGridView.TabIndex = 6;
             PremiumUserDataGridView.TabStop = false;
+            PremiumUserDataGridView.SelectionChanged += PremiumUserDataGridView_SelectionChanged;
             // 
             // userIdDataGridViewTextBoxColumn1
             // 
@@ -451,6 +464,7 @@
             AddPremiumUserBtn.TabIndex = 5;
             AddPremiumUserBtn.Text = "Add New Premium User";
             AddPremiumUserBtn.UseVisualStyleBackColor = false;
+            AddPremiumUserBtn.Click += AddPremiumUserBtn_Click;
             // 
             // Headline
             // 
@@ -507,7 +521,6 @@
         private DataGridView BooksDataGridView;
         private BindingSource bookBindingSource;
         private Button DeleteBookBtn;
-        private TextBox SearchForBookTextbox;
         private Label SearchBookLabel;
         private TextBox SearchForUserByIdTextbox;
         private Label SearchForUserByIdLabel;
@@ -531,5 +544,6 @@
         private DataGridViewTextBoxColumn titleDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn authorDataGridViewTextBoxColumn;
         private DataGridViewCheckBoxColumn isAvailableDataGridViewCheckBoxColumn;
+        private MaskedTextBox SearchForBookTextbox;
     }
 }
