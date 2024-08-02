@@ -296,6 +296,7 @@
             UserDataGridView.Size = new Size(886, 334);
             UserDataGridView.TabIndex = 6;
             UserDataGridView.TabStop = false;
+            UserDataGridView.CellDoubleClick += UserDataGridView_CellDoubleClick;
             UserDataGridView.SelectionChanged += UserDataGridView_SelectionChanged;
             // 
             // userIdDataGridViewTextBoxColumn

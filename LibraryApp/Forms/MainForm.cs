@@ -132,5 +132,15 @@ namespace LibraryApp
             }
             ReloadGridviews();
         }
+
+        private void UserDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (UserDataGridView.SelectedRows.Count > 0)
+            {
+                User user = (User)UserDataGridView.SelectedRows[0].DataBoundItem;
+                ViewUserForm viewUserForm = new ViewUserForm(_library, user.UserId);
+                viewUserForm.ShowDialog();
+            }
+        }
     }
 }
