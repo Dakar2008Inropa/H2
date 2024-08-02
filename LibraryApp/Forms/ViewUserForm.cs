@@ -38,5 +38,36 @@ namespace LibraryApp.Forms
             returnBookBindingResource.DataSource = User.BorrowedBooks;
             ReturnBookDataGridView.DataSource = returnBookBindingResource;
         }
+
+        private void LoanBookDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (LoanBookDataGridView.SelectedRows.Count > 0 && !IsLoanLimitReached())
+            {
+                var selectedBook = (Book)LoanBookDataGridView.SelectedRows[0].DataBoundItem;
+                User.BorrowBook(selectedBook);
+                returnBookBindingResource.ResetBindings(false);
+                loanBookBindingSource.ResetBindings(false);
+            }
+            else
+            {
+                MessageBox.Show($"{User.Name} has reach the loan limit", "Loan Limit", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void ReturnBookDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (ReturnBookDataGridView.SelectedRows.Count > 0)
+            {
+                var selectedBook = (Book)ReturnBookDataGridView.SelectedRows[0].DataBoundItem;
+                User.ReturnBook(selectedBook);
+                returnBookBindingResource.ResetBindings(false);
+                loanBookBindingSource.ResetBindings(false);
+            }
+        }
+
+        private bool IsLoanLimitReached()
+        {
+            return User.BorrowedBooks.Count >= User.LoanLimit;
+        }
     }
 }

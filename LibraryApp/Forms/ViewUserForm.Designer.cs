@@ -43,6 +43,7 @@
             dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
             returnBookBindingResource = new BindingSource(components);
+            HintText = new Label();
             ViewUserTabControl.SuspendLayout();
             LoanBookPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)LoanBookDataGridView).BeginInit();
@@ -68,11 +69,11 @@
             // 
             ViewUserTabControl.Controls.Add(LoanBookPage);
             ViewUserTabControl.Controls.Add(ReturnBookPage);
-            ViewUserTabControl.Location = new Point(5, 54);
+            ViewUserTabControl.Location = new Point(5, 79);
             ViewUserTabControl.Margin = new Padding(0);
             ViewUserTabControl.Name = "ViewUserTabControl";
             ViewUserTabControl.SelectedIndex = 0;
-            ViewUserTabControl.Size = new Size(704, 319);
+            ViewUserTabControl.Size = new Size(704, 294);
             ViewUserTabControl.TabIndex = 1;
             // 
             // LoanBookPage
@@ -82,7 +83,7 @@
             LoanBookPage.Margin = new Padding(0);
             LoanBookPage.Name = "LoanBookPage";
             LoanBookPage.Padding = new Padding(5);
-            LoanBookPage.Size = new Size(696, 290);
+            LoanBookPage.Size = new Size(696, 265);
             LoanBookPage.TabIndex = 0;
             LoanBookPage.Text = "Loan";
             LoanBookPage.UseVisualStyleBackColor = true;
@@ -104,8 +105,9 @@
             LoanBookDataGridView.RowHeadersVisible = false;
             LoanBookDataGridView.RowTemplate.Height = 25;
             LoanBookDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            LoanBookDataGridView.Size = new Size(686, 280);
+            LoanBookDataGridView.Size = new Size(686, 255);
             LoanBookDataGridView.TabIndex = 0;
+            LoanBookDataGridView.CellDoubleClick += LoanBookDataGridView_CellDoubleClick;
             // 
             // iSBNDataGridViewTextBoxColumn
             // 
@@ -138,11 +140,11 @@
             // ReturnBookPage
             // 
             ReturnBookPage.Controls.Add(ReturnBookDataGridView);
-            ReturnBookPage.Location = new Point(4, 24);
+            ReturnBookPage.Location = new Point(4, 25);
             ReturnBookPage.Margin = new Padding(0);
             ReturnBookPage.Name = "ReturnBookPage";
             ReturnBookPage.Padding = new Padding(5);
-            ReturnBookPage.Size = new Size(696, 291);
+            ReturnBookPage.Size = new Size(696, 265);
             ReturnBookPage.TabIndex = 1;
             ReturnBookPage.Text = "Return";
             ReturnBookPage.UseVisualStyleBackColor = true;
@@ -164,8 +166,9 @@
             ReturnBookDataGridView.RowHeadersVisible = false;
             ReturnBookDataGridView.RowTemplate.Height = 25;
             ReturnBookDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            ReturnBookDataGridView.Size = new Size(686, 281);
+            ReturnBookDataGridView.Size = new Size(686, 255);
             ReturnBookDataGridView.TabIndex = 1;
+            ReturnBookDataGridView.CellDoubleClick += ReturnBookDataGridView_CellDoubleClick;
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -195,12 +198,25 @@
             // 
             returnBookBindingResource.DataSource = typeof(Classes.Book);
             // 
+            // HintText
+            // 
+            HintText.Font = new Font("Verdana", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            HintText.ForeColor = Color.Silver;
+            HintText.Location = new Point(5, 54);
+            HintText.Margin = new Padding(0, 0, 0, 3);
+            HintText.Name = "HintText";
+            HintText.Size = new Size(704, 22);
+            HintText.TabIndex = 2;
+            HintText.Text = "Double-Click a Book to loan or return it";
+            HintText.TextAlign = ContentAlignment.MiddleCenter;
+            // 
             // ViewUserForm
             // 
             AutoScaleDimensions = new SizeF(8F, 16F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(57, 77, 91);
             ClientSize = new Size(714, 378);
+            Controls.Add(HintText);
             Controls.Add(ViewUserTabControl);
             Controls.Add(UserNameLabel);
             Font = new Font("Verdana", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
@@ -237,5 +253,6 @@
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private BindingSource returnBookBindingResource;
+        private Label HintText;
     }
 }
