@@ -45,8 +45,7 @@ namespace LibraryApp.Forms
             {
                 var selectedBook = (Book)LoanBookDataGridView.SelectedRows[0].DataBoundItem;
                 User.BorrowBook(selectedBook);
-                returnBookBindingResource.ResetBindings(false);
-                loanBookBindingSource.ResetBindings(false);
+                ReloadDataGridViews();
             }
             else
             {
@@ -60,14 +59,20 @@ namespace LibraryApp.Forms
             {
                 var selectedBook = (Book)ReturnBookDataGridView.SelectedRows[0].DataBoundItem;
                 User.ReturnBook(selectedBook);
-                returnBookBindingResource.ResetBindings(false);
-                loanBookBindingSource.ResetBindings(false);
+                ReloadDataGridViews();
             }
         }
 
         private bool IsLoanLimitReached()
         {
             return User.BorrowedBooks.Count >= User.LoanLimit;
+        }
+
+        private void ReloadDataGridViews()
+        {
+            loanBookBindingSource.DataSource = Lib.DisplayAvailableBooks();
+            returnBookBindingResource.ResetBindings(false);
+            loanBookBindingSource.ResetBindings(false);
         }
     }
 }

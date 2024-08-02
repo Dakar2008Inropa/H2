@@ -142,5 +142,15 @@ namespace LibraryApp
                 viewUserForm.ShowDialog();
             }
         }
+
+        private void PremiumUserDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (PremiumUserDataGridView.SelectedRows.Count > 0)
+            {
+                PremiumUser premiumUser = (PremiumUser)PremiumUserDataGridView.SelectedRows[0].DataBoundItem;
+                ViewUserForm viewUserForm = new ViewUserForm(_library, premiumUser.UserId, true);
+                viewUserForm.ShowDialog();
+            }
+        }
     }
 }

@@ -227,11 +227,11 @@
             UserPage.Controls.Add(DeleteUserBtn);
             UserPage.Controls.Add(UserDataGridView);
             UserPage.Controls.Add(AddUserBtn);
-            UserPage.Location = new Point(4, 25);
+            UserPage.Location = new Point(4, 24);
             UserPage.Margin = new Padding(0);
             UserPage.Name = "UserPage";
             UserPage.Padding = new Padding(5);
-            UserPage.Size = new Size(896, 387);
+            UserPage.Size = new Size(896, 388);
             UserPage.TabIndex = 1;
             UserPage.Text = "Users";
             UserPage.UseVisualStyleBackColor = true;
@@ -285,7 +285,7 @@
             UserDataGridView.Columns.AddRange(new DataGridViewColumn[] { userIdDataGridViewTextBoxColumn, nameDataGridViewTextBoxColumn, loanLimitDataGridViewTextBoxColumn });
             UserDataGridView.DataSource = userBindingSource;
             UserDataGridView.Dock = DockStyle.Bottom;
-            UserDataGridView.Location = new Point(5, 48);
+            UserDataGridView.Location = new Point(5, 49);
             UserDataGridView.Margin = new Padding(0);
             UserDataGridView.MultiSelect = false;
             UserDataGridView.Name = "UserDataGridView";
@@ -351,11 +351,11 @@
             PremiumUserPage.Controls.Add(DeletePremiumUserBtn);
             PremiumUserPage.Controls.Add(PremiumUserDataGridView);
             PremiumUserPage.Controls.Add(AddPremiumUserBtn);
-            PremiumUserPage.Location = new Point(4, 24);
+            PremiumUserPage.Location = new Point(4, 25);
             PremiumUserPage.Margin = new Padding(0);
             PremiumUserPage.Name = "PremiumUserPage";
             PremiumUserPage.Padding = new Padding(5);
-            PremiumUserPage.Size = new Size(896, 388);
+            PremiumUserPage.Size = new Size(896, 387);
             PremiumUserPage.TabIndex = 2;
             PremiumUserPage.Text = "Premium Users";
             PremiumUserPage.UseVisualStyleBackColor = true;
@@ -409,7 +409,7 @@
             PremiumUserDataGridView.Columns.AddRange(new DataGridViewColumn[] { userIdDataGridViewTextBoxColumn1, nameDataGridViewTextBoxColumn1, loanLimitDataGridViewTextBoxColumn1 });
             PremiumUserDataGridView.DataSource = premiumUserBindingSource;
             PremiumUserDataGridView.Dock = DockStyle.Bottom;
-            PremiumUserDataGridView.Location = new Point(5, 49);
+            PremiumUserDataGridView.Location = new Point(5, 48);
             PremiumUserDataGridView.Margin = new Padding(0);
             PremiumUserDataGridView.MultiSelect = false;
             PremiumUserDataGridView.Name = "PremiumUserDataGridView";
@@ -420,6 +420,7 @@
             PremiumUserDataGridView.Size = new Size(886, 334);
             PremiumUserDataGridView.TabIndex = 6;
             PremiumUserDataGridView.TabStop = false;
+            PremiumUserDataGridView.CellDoubleClick += PremiumUserDataGridView_CellDoubleClick;
             PremiumUserDataGridView.SelectionChanged += PremiumUserDataGridView_SelectionChanged;
             // 
             // userIdDataGridViewTextBoxColumn1
