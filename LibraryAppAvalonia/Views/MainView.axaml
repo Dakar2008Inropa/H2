@@ -1,0 +1,44 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:LibraryAppAvalonia.ViewModels"
+             mc:Ignorable="d"
+			 d:DesignWidth="800"
+			 d:DesignHeight="450"
+             x:Class="LibraryAppAvalonia.Views.MainView"
+             x:DataType="vm:MainViewModel">
+	<Design.DataContext>
+		<vm:MainViewModel />
+	</Design.DataContext>
+	<UserControl.Styles>
+		<Style Selector="ListBoxItem:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+			<Setter Property="Background" Value="Orange" />
+		</Style>
+	</UserControl.Styles>
+	<SplitView
+		IsPaneOpen="{Binding IsPaneOpen}"
+		OpenPaneLength="200"
+		CompactPaneLength="48"
+		DisplayMode="CompactInline"
+		Background="#000"
+		PaneBackground="#1e1e1e"
+		Name="MySplitView">
+		<SplitView.Pane>
+			<StackPanel
+				Spacing="5">
+				<Image Source="/Assets/book_icon.png" MaxWidth="96" MaxHeight="96" />
+				<ListBox Background="#555" Foreground="White">
+					<ListBoxItem Cursor="Hand">Books</ListBoxItem>
+					<ListBoxItem Cursor="Hand">Users</ListBoxItem>
+					<ListBoxItem Cursor="Hand">Premium Users</ListBoxItem>
+				</ListBox>
+			</StackPanel>
+		</SplitView.Pane>
+		<SplitView.Content>
+			<StackPanel Margin="10">
+				<TextBlock Foreground="White">CONTENT</TextBlock>
+			</StackPanel>
+		</SplitView.Content>
+	</SplitView>
+</UserControl>
