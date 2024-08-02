@@ -3,6 +3,8 @@
     public class User
     {
         public string Name { get; set; }
+
+        //UserId skal være readonly da det er en unik identifikator for brugeren
         public string UserId { get; set; }
         public int LoanLimit { get; set; }
         public List<Book> BorrowedBooks { get; set; }
@@ -12,6 +14,7 @@
             UserId = Guid.NewGuid().ToString("N").Substring(0, 10).ToUpper();
             LoanLimit = 4;
             BorrowedBooks = new List<Book>();
+            //Hvorfor have en bruger uden et navn?
         }
 
         public User(string name)
