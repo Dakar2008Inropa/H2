@@ -184,5 +184,16 @@ namespace DIYThursdayUnitTest
                 Assert.AreEqual(expected, sw.ToString());
             }
         }
+
+        [TestMethod]
+        public void ArrayCastTest()
+        {
+            object[] array = new object[] { 10, "Testing", 10.55, false };
+
+            Assert.AreEqual(10, (int)array[0]);
+            Assert.AreEqual("Testing", (string)array[1]);
+            Assert.AreEqual(10.55, (double)array[2]);
+            Assert.IsFalse((bool)array[3]);
+        }
     }
 }
