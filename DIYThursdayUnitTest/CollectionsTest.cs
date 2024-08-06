@@ -106,5 +106,83 @@ namespace DIYThursdayUnitTest
             Assert.AreEqual(5, sortedSet.Min);
             Assert.AreEqual(10, sortedSet.Max);
         }
+
+        [TestMethod]
+        public void AddStudents()
+        {
+            List<Student> students = new List<Student>();
+            Student student = new Student("Daniel", "Andersen");
+            Helper.AddToCollection(students, student);
+
+            Assert.AreEqual(1, students.Count);
+            Assert.AreEqual("Daniel", students[0].FirstName);
+        }
+
+        [TestMethod]
+        public void RemoveStudents()
+        {
+            List<Student> students = new List<Student>();
+            Student student = new Student("Daniel", "Andersen");
+            Helper.AddToCollection(students, student);
+            Assert.AreEqual(1, students.Count);
+
+            Helper.RemoveFromCollection(students, student);
+            Assert.AreEqual(0, students.Count);
+        }
+
+        [TestMethod]
+        public void PrintStudents()
+        {
+            List<Student> students = new List<Student>();
+            Student student = new Student("Daniel", "Andersen");
+            Helper.AddToCollection(students, student);
+
+            using (StringWriter sw = new StringWriter())
+            {
+                Console.SetOut(sw);
+                Helper.PrintCollection(students);
+                string expected = string.Format("{0}{1}", student, Environment.NewLine);
+                Assert.AreEqual(expected, sw.ToString());
+            }
+        }
+
+        [TestMethod]
+        public void AddCars()
+        {
+            List<Car> cars = new List<Car>();
+            Car car = new Car("Toyota", "Corolla");
+            Helper.AddToCollection(cars, car);
+
+            Assert.AreEqual(1, cars.Count);
+            Assert.AreEqual("Toyota", cars[0].Make);
+        }
+
+        [TestMethod]
+        public void RemoveCars()
+        {
+            List<Car> cars = new List<Car>();
+            Car car = new Car("Toyota", "Corolla");
+            Helper.AddToCollection(cars, car);
+            Assert.AreEqual(1, cars.Count);
+
+            Helper.RemoveFromCollection(cars, car);
+            Assert.AreEqual(0, cars.Count);
+        }
+
+        [TestMethod]
+        public void PrintCars()
+        {
+            List<Car> cars = new List<Car>();
+            Car car = new Car("Toyota", "Corolla");
+            Helper.AddToCollection(cars, car);
+
+            using (StringWriter sw = new StringWriter())
+            {
+                Console.SetOut(sw);
+                Helper.PrintCollection(cars);
+                string expected = string.Format("{0}{1}", car, Environment.NewLine);
+                Assert.AreEqual(expected, sw.ToString());
+            }
+        }
     }
 }
