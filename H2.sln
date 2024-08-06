@@ -17,6 +17,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibraryAppAvalonia", "Libra
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibraryAppAvalonia.Desktop", "LibraryAppAvalonia.Desktop\LibraryAppAvalonia.Desktop.csproj", "{E2653DDA-1D5B-4AF6-81E3-7366D01B32A2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DIYThursdayUnitTest", "DIYThursdayUnitTest\DIYThursdayUnitTest.csproj", "{29D77FAD-C851-4624-A6D5-8432966E9CC2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ClassLibraries", "ClassLibraries", "{94020D41-38A8-46BC-B95B-063468D42489}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DIYThursdayCollections", "DIYThursdayCollections\DIYThursdayCollections.csproj", "{A4AFA05A-7FE6-4AB6-8EEF-06D50EDCF4D5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +45,14 @@ Global
 		{E2653DDA-1D5B-4AF6-81E3-7366D01B32A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E2653DDA-1D5B-4AF6-81E3-7366D01B32A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E2653DDA-1D5B-4AF6-81E3-7366D01B32A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29D77FAD-C851-4624-A6D5-8432966E9CC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29D77FAD-C851-4624-A6D5-8432966E9CC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29D77FAD-C851-4624-A6D5-8432966E9CC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29D77FAD-C851-4624-A6D5-8432966E9CC2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4AFA05A-7FE6-4AB6-8EEF-06D50EDCF4D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4AFA05A-7FE6-4AB6-8EEF-06D50EDCF4D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4AFA05A-7FE6-4AB6-8EEF-06D50EDCF4D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4AFA05A-7FE6-4AB6-8EEF-06D50EDCF4D5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -48,6 +62,8 @@ Global
 		{A37E3829-2A85-408E-B451-83837A0B8B95} = {206F22D7-22D0-48F1-AC51-BE3D73AF5035}
 		{0F86CBD2-264F-4AFD-A046-7C40D7A40FBD} = {91C0A31B-1651-42DB-B227-929316CC4D58}
 		{E2653DDA-1D5B-4AF6-81E3-7366D01B32A2} = {91C0A31B-1651-42DB-B227-929316CC4D58}
+		{29D77FAD-C851-4624-A6D5-8432966E9CC2} = {206F22D7-22D0-48F1-AC51-BE3D73AF5035}
+		{A4AFA05A-7FE6-4AB6-8EEF-06D50EDCF4D5} = {94020D41-38A8-46BC-B95B-063468D42489}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5AB10D60-0E8E-4DEA-83F1-022C22D6D720}
