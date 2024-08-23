@@ -1,0 +1,44 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 xmlns:vm="using:AvaloniaMVVM.ViewModels"
+			 x:DataType="vm:ProductListViewModel"
+             x:Class="AvaloniaMVVM.Views.ProductListView">
+	<Design.DataContext>
+		<vm:MainWindowViewModel/>
+	</Design.DataContext>
+	<UserControl.Styles>
+		<Style Selector="DataGridCell">
+			<Setter Property="HorizontalContentAlignment" Value="Center" />
+			<Setter Property="VerticalContentAlignment" Value="Center" />
+		</Style>
+		<Style Selector="DataGridColumnHeader">
+			<Setter Property="HorizontalContentAlignment" Value="Center" />
+			<Setter Property="VerticalContentAlignment" Value="Center" />
+		</Style>
+	</UserControl.Styles>
+	<Grid RowDefinitions="50 *">
+		<Grid Grid.Row="0" ColumnDefinitions="*" HorizontalAlignment="Center" VerticalAlignment="Center">
+			<TextBlock Text="Produkt liste" Margin="10" FontSize="20" FontFamily="Verdana" FontWeight="Bold" />
+		</Grid>
+		<Grid Grid.Row="1" ColumnDefinitions="*" Margin="10">
+			<DataGrid
+				ItemsSource="{Binding Products}"
+				AutoGenerateColumns="False"
+				IsReadOnly="True"
+				GridLinesVisibility="All"
+				BorderBrush="Black"
+				Name="ProductListDataGrid"
+				BorderThickness="1" DoubleTapped="DataGrid_DoubleTapped">
+				<DataGrid.Columns>
+					<DataGridTextColumn Header="Produktnavn" Binding="{Binding Name}" Width="*" />
+					<DataGridTextColumn Header="Salgspris" Binding="{Binding SalesPrice}" Width="*" />
+					<DataGridTextColumn Header="Indkøbspris" Binding="{Binding Price}" Width="*" />
+					<DataGridTextColumn Header="Lagerantal" Binding="{Binding Quantity}" Width="*" />
+				</DataGrid.Columns>
+			</DataGrid>
+		</Grid>
+	</Grid>
+</UserControl>

@@ -1,0 +1,25 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:uc="using:AvaloniaTest"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="500"
+        x:Class="AvaloniaTest.MainWindow"
+        Title="AvaloniaTest">
+	<!--<uc:SettingsUC></uc:SettingsUC>-->
+	<StackPanel Margin="20">
+		
+		<ComboBox SelectedIndex="0" MaxDropDownHeight="100" Name="ComboBoxTest" SelectionChanged="ComboBox_SelectionChanged" Margin="0 0 0 10">
+			<ComboBoxItem>CSharp</ComboBoxItem>
+			<ComboBoxItem>Javascript</ComboBoxItem>
+			<ComboBoxItem>C++</ComboBoxItem>
+			<ComboBoxItem>Python</ComboBoxItem>
+			<ComboBoxItem>Ruby</ComboBoxItem>
+		</ComboBox>
+		
+		<Calendar SelectionMode="MultipleRange" Name="CalendarTest" SelectedDatesChanged="Calendar_SelectedDatesChanged" Margin="0 0 0 10" />
+
+		<TextBox Name="FontSizeTest" LostFocus="TextBox_LostFocus" KeyDown="TextBox_KeyDown">1</TextBox>
+		
+	</StackPanel>
+</Window>

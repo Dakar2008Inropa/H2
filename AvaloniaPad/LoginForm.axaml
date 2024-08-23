@@ -1,0 +1,34 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:dc="using:AvaloniaPad"
+			 x:DataType="dc:UserLogin"
+             mc:Ignorable="d" d:DesignWidth="450" d:DesignHeight="320"
+			 Width="450"
+			 Height="320"
+			 Background="#0e1838"
+             x:Class="AvaloniaPad.LoginForm">
+	<UserControl.Styles>
+		<StyleInclude Source="LoginStyles.axaml" />
+	</UserControl.Styles>
+	<Border BorderBrush="white" BorderThickness="1" Margin="30" Background="#CCC" BoxShadow="5 10 0 Black">
+		<StackPanel Margin="30">
+			
+			<WrapPanel Margin="0 -15 0 0">
+				<TextBlock FontFamily="Times New Roman" FontSize="33" FontWeight="Bold" Text="AvaloniaPad" LetterSpacing="5" Margin="0 0 15 0" Foreground="Black" />
+				<TextBlock FontFamily="Times New Roman" FontSize="33" FontWeight="Bold" Text="v. 1.0" Foreground="Black" />
+			</WrapPanel>
+			
+			<TextBox Padding="8" Classes="LoginTextbox" Name="Usernamebox" Margin="0 20 0 20" Watermark="Username" Text="{Binding Username}" KeyDown="Loginbox_KeyDown" AttachedToVisualTree="Usernamebox_AttachedToVisualTree" TextChanged="Loginbox_TextChanged" />
+			<TextBox Padding="8" Classes="LoginTextbox" Name="Passwordbox" Margin="0 0 0 20" Watermark="Password" Text="{Binding Password}" PasswordChar="*" KeyDown="Loginbox_KeyDown" TextChanged="Loginbox_TextChanged" />
+			<TextBlock Name="LoginErrorText" TextAlignment="Center" Margin="0 0 0 20" IsVisible="false" Foreground="DarkRed" FontWeight="Bold">Invalid login...please try again</TextBlock>
+			
+			<Grid ColumnDefinitions="* 120" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+				<Button Grid.Column="0" Classes="LoginButton" Name="LoginBtn" Content="Login" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" BorderBrush="Black" BorderThickness="1" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" IsEnabled="False" Opacity="0.1" Margin="0 0 20 0" Click="LoginBtn_Click" />
+				<Button Grid.Column="1" Classes="LoginButton" Name="ResetBtn" Content="Reset" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" BorderBrush="Black" BorderThickness="1" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" IsEnabled="False" Opacity="0.1" Click="ResetBtn_Click"></Button>
+			</Grid>
+			
+		</StackPanel>
+	</Border>
+</UserControl>

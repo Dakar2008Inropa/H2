@@ -1,0 +1,79 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="AvaloniaPad.MainView"  Name="MainViewUC" Loaded="UserControl_Loaded">
+	<UserControl.Styles>
+		<Style Selector="TextBox:focus /template/ Border#PART_BorderElement">
+			<Setter Property="BorderBrush" Value="White"/>
+		</Style>
+	</UserControl.Styles>
+	<Grid RowDefinitions="Auto * Auto">
+		<DockPanel Grid.Row="0">
+			<Menu DockPanel.Dock="Top">
+				<MenuItem Header="File">
+					<MenuItem Header="New File" InputGesture="CTRL+N" />
+					<MenuItem Header="Open..." InputGesture="CTRL+O"/>
+					<MenuItem Header="Save" InputGesture="CTRL+S"/>
+					<MenuItem Header="Save As..." InputGesture="CTRL+SHIFT+S"/>
+					<Separator />
+					<MenuItem Header="Page Setup..."/>
+					<MenuItem Header="Print..." InputGesture="CTRL+P"/>
+					<Separator />
+					<MenuItem Header="Exit"/>
+				</MenuItem>
+				<MenuItem Header="Edit">
+					<MenuItem Header="Undo" IsEnabled="False" InputGesture="CTRL+Z"/>
+					<Separator />
+					<MenuItem Header="Cut" InputGesture="CTRL+X"/>
+					<MenuItem Header="Copy" InputGesture="CTRL+C"/>
+					<MenuItem Header="Paste" InputGesture="CTRL+V"/>
+					<MenuItem Header="Delete" InputGesture="Delete"/>
+					<Separator />
+					<MenuItem Header="Search With Google..." InputGesture="CTRL+E"/>
+					<MenuItem Header="Find..." InputGesture="CTRL+F"/>
+					<MenuItem Header="Find Next" InputGesture="F3"/>
+					<MenuItem Header="Find Previous" InputGesture="SHIFT+F3"/>
+					<MenuItem Header="Replace..." InputGesture="CTRL+H"/>
+					<MenuItem Header="Go To..." InputGesture="CTRL+G"/>
+					<Separator />
+					<MenuItem Header="Select All" InputGesture="CTRL+A"/>
+					<MenuItem Header="Time/Date" InputGesture="F5"/>
+				</MenuItem>
+				<MenuItem Header="Format">
+					<MenuItem Header="Word Wrap" />
+					<MenuItem Header="Font..." />
+					<MenuItem Header="Appearance..." Click="AppearanceBtn_Click" />
+				</MenuItem>
+				<MenuItem Header="View">
+					<MenuItem Header="Zoom">
+						<MenuItem Header="Zoom In" />
+						<MenuItem Header="Zoom Out" />
+						<MenuItem Header="Restore Default Zoom" />
+					</MenuItem>
+					<MenuItem Name="ViewHTMLBtn" Header="View HTML" ToggleType="CheckBox" IsChecked="False"/>
+					<MenuItem Name="StatusBarBtn" Header="Status Bar" ToggleType="CheckBox" IsChecked="True" Click="StatusBarBtn_Click" />
+				</MenuItem>
+				<MenuItem Header="Help">
+					<MenuItem Header="View Help" />
+					<MenuItem Header="Send Feedback" />
+					<Separator />
+					<MenuItem Header="About AvaloniaPad" />
+				</MenuItem>
+			</Menu>
+			<TextBlock/>
+		</DockPanel>
+		<Grid Grid.Row="1" ColumnDefinitions="* Auto" Margin="4">
+			<TextBox Grid.Row="1" Grid.Column="0" AcceptsReturn="True" AcceptsTab="True" BorderThickness="0" Padding="10">Test</TextBox>
+		</Grid>
+		<Border Grid.Row="2" BorderBrush="Black" BorderThickness="0 1 0 0">
+			<Grid ColumnDefinitions="* * * *" Background="#CCC" Name="StatusBar">
+				<TextBlock Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5">Ln 1, Col 1</TextBlock>
+				<TextBlock Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5">100%</TextBlock>
+				<TextBlock Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5">Windows (CRLF)</TextBlock>
+				<TextBlock Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5">UTF-8</TextBlock>
+			</Grid>
+		</Border>
+	</Grid>
+</UserControl>
