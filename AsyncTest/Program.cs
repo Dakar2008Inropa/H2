@@ -16,7 +16,7 @@ namespace AsyncTest
 
             var font = FigletFont.Load($"Fonts/{selectedFont}");
 
-            AnsiConsole.Write(new FigletText(font, "Asynchronous programming with async and await").Centered().Color(Color.Red));
+            AnsiConsole.Write(new FigletText(font, "Asynchronous programming with async and await").LeftJustified().Color(Color.Red));
             PourCoffee();
             AnsiConsole.MarkupLine("[bold darkorange3]coffee is ready[/]");
 
