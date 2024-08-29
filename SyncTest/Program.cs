@@ -1,11 +1,11 @@
 ﻿using Spectre.Console;
 using System.Diagnostics;
 
-namespace AsyncTest
+namespace SyncTest
 {
     static class Program
     {
-        static async Task Main(string[] args)
+        static void Main(string[] args)
         {
             Stopwatch stopw = new Stopwatch();
             stopw.Start();
@@ -14,34 +14,28 @@ namespace AsyncTest
 
             var font = FigletFont.Load($"Fonts/{selectedFont}");
 
-            AnsiConsole.Write(new FigletText(font, "Asynchronous Programming with async and await").LeftJustified().Color(Color.Red));
+            AnsiConsole.Write(new FigletText(font, "Synchronous Programming").LeftJustified().Color(Color.Red));
+
             PourCoffee();
             AnsiConsole.MarkupLine("[bold darkorange3]coffee is ready[/]");
 
-            var eggsTask = FryEggsAsync(2);
-            var baconTask = FryBaconAsync(3);
-            var toastTask = MakeToastWithButterAndJamAsync(2);
+            FryEggs(2);
+            AnsiConsole.MarkupLine("[bold green1]eggs are ready[/]");
 
-            var taskMessages = new Dictionary<Task, string>
-            {
-                { eggsTask, "eggs are ready" },
-                { baconTask, "bacon is ready" },
-                { toastTask, "toast is ready" }
-            };
+            FryBacon(3);
+            AnsiConsole.MarkupLine("[bold green1]bacon is ready[/]");
 
-            var breakfastTasks = taskMessages.Keys.ToList();
-
-            while (breakfastTasks.Count > 0)
-            {
-                Task finishedTask = await Task.WhenAny(breakfastTasks);
-                AnsiConsole.MarkupLine($"[bold green1]{taskMessages[finishedTask]}[/]");
-                await finishedTask;
-                breakfastTasks.Remove(finishedTask);
-            }
+            ToastBread(2);
+            ApplyButter();
+            ApplyJam();
+            AnsiConsole.MarkupLine("[bold green1]toast is ready[/]");
 
             PourOJ();
-            AnsiConsole.MarkupLine("[bold orange1]Orange Juice is ready[/]");
-            AnsiConsole.MarkupLine("[bold steelblue1_1]Breakfast is ready[/]");
+            AnsiConsole.MarkupLine("[bold green1]toast is ready[/]");
+
+
+            AnsiConsole.MarkupLine("[bold orange1]Orange juice is ready[/]");
+            AnsiConsole.MarkupLine("[bold steelblue1_1]Breakfast is ready![/]");
 
             stopw.Stop();
             TimeSpan ts = stopw.Elapsed;
@@ -49,51 +43,6 @@ namespace AsyncTest
             AnsiConsole.MarkupLine($"[bold white]Elapsed time: [bold red]{elapsedTime}[/][/]");
         }
 
-        #region Async Methods
-        private static async Task MakeToastWithButterAndJamAsync(int number)
-        {
-            await ToastBreadAsync(number);
-            ApplyButter();
-            ApplyJam();
-        }
-
-        private static async Task ToastBreadAsync(int slices)
-        {
-            for (int slice = 0; slice < slices; slice++)
-            {
-                AnsiConsole.MarkupLine("[bold tan]Putting a slice of bread in the toaster[/]");
-            }
-            AnsiConsole.MarkupLine("[bold tan]Start toasting...[/]");
-            await Task.Delay(3000);
-            AnsiConsole.MarkupLine("[bold tan]Remove toast from toaster[/]");
-        }
-
-        private static async Task FryBaconAsync(int slices)
-        {
-            AnsiConsole.MarkupLine($"[bold lightsalmon3_1]putting [tan]{slices}[/] slices of bacon in the pan[/]");
-            AnsiConsole.MarkupLine("[bold lightsalmon3_1]cooking first side of bacon...[/]");
-            await Task.Delay(3000);
-            for (int slice = 0; slice < slices; slice++)
-            {
-                AnsiConsole.MarkupLine("[bold lightsalmon3_1]flipping a slice of bacon[/]");
-            }
-            AnsiConsole.MarkupLine("[bold lightsalmon3_1]cooking the second side of bacon...[/]");
-            await Task.Delay(3000);
-            AnsiConsole.MarkupLine("[bold lightsalmon3_1]Put bacon on plate[/]");
-        }
-
-        private static async Task FryEggsAsync(int howMany)
-        {
-            AnsiConsole.MarkupLine("[bold white]Warming the egg pan...[/]");
-            await Task.Delay(3000);
-            AnsiConsole.MarkupLine($"[bold white]cracking [bold red]{howMany}[/] eggs[/]");
-            AnsiConsole.MarkupLine("cooking the eggs ...");
-            await Task.Delay(3000);
-            AnsiConsole.MarkupLine("Put eggs on plate");
-        }
-        #endregion
-
-        #region Sync Methods
         private static void PourOJ()
         {
             AnsiConsole.MarkupLine("[bold orange1]Pouring orange juice[/]");
@@ -104,6 +53,41 @@ namespace AsyncTest
 
         private static void ApplyButter() =>
             AnsiConsole.MarkupLine("[bold tan]Putting butter on the toast[/]");
+
+        private static void ToastBread(int slices)
+        {
+            for (int slice = 0; slice < slices; slice++)
+            {
+                AnsiConsole.MarkupLine("[bold tan]Putting a slice of bread in the toaster[/]");
+            }
+            AnsiConsole.MarkupLine("[bold tan]Start toasting...[/]");
+            Task.Delay(3000).Wait();
+            AnsiConsole.MarkupLine("[bold tan]Remove toast from toaster[/]");
+        }
+
+        private static void FryBacon(int slices)
+        {
+            AnsiConsole.MarkupLine($"[bold lightsalmon3_1]putting [tan]{slices}[/] slices of bacon in the pan[/]");
+            AnsiConsole.MarkupLine("[bold lightsalmon3_1]cooking first side of bacon...[/]");
+            Task.Delay(3000).Wait();
+            for (int slice = 0; slice < slices; slice++)
+            {
+                AnsiConsole.MarkupLine("[bold lightsalmon3_1]flipping a slice of bacon[/]");
+            }
+            AnsiConsole.MarkupLine("[bold lightsalmon3_1]cooking the second side of bacon...[/]");
+            Task.Delay(3000).Wait();
+            AnsiConsole.MarkupLine("[bold lightsalmon3_1]Put bacon on plate[/]");
+        }
+
+        private static void FryEggs(int howMany)
+        {
+            AnsiConsole.MarkupLine("[bold white]Warming the egg pan...[/]");
+            Task.Delay(3000).Wait();
+            AnsiConsole.MarkupLine($"[bold white]cracking [bold red]{howMany}[/] eggs[/]");
+            AnsiConsole.MarkupLine("cooking the eggs ...");
+            Task.Delay(3000).Wait();
+            AnsiConsole.MarkupLine("Put eggs on plate");
+        }
 
         private static void PourCoffee()
         {
@@ -127,6 +111,5 @@ namespace AsyncTest
             int index = random.Next(fonts.Count);
             return fonts[index];
         }
-        #endregion
     }
 }
